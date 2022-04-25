@@ -1,0 +1,35 @@
+.item-list {
+  width: 100%;
+  height: calc(100% - 210px);
+  overflow-y: auto;
+  text-align: start;
+}
+
+.item-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.item-content {
+  word-wrap: break-word;
+  border-bottom: 1px #666666 dotted;
+  min-width: calc(100% - 71.41px);
+  padding: 0 10px;
+}
+
+.delete-btn {
+  right: 20px;
+  margin: 0 10px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 1px 2px 2px rgb(0 0 0 / 40%);
+  font-family: 'Amatic Regular', 'Courier New', monospace;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+}

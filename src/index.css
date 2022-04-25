@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Amatic Regular';
+  src: url('./font/AmaticSC-Regular.ttf');
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: #666666;
+  font-family: 'Amatic Regular', 'Courier New', monospace;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 40px;
+  background: url('https://img.freepik.com/free-photo/flat-lay-desk-arrangement-with-copy-space_23-2148928165.jpg?w=2000') no-repeat center center;
+  background-size: cover;
+}
+
+* {
+  box-sizing: border-box;
+}
