@@ -7,33 +7,33 @@ module.exports = (env, argv) => {
   return {
     mode: env.production ? 'production' : 'development',
     devtool: argv.mode === 'production' ? false : 'inline-source-map',
-    entry: path.join(__dirname, 'src', 'index.js'),   // indicates which module webpack should use to begin building out its internal dependency graph.
-    output: {   // where to emit the bundles
-      path: path.resolve(__dirname, 'dist'),   // the directory to put assets after bundling
-      filename: 'bundle.js',   // the filename of bundled file
+    entry: path.join(__dirname, 'src', 'index.js'),
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'bundle.js',
       assetModuleFilename: 'img/[name][ext]',
       publicPath: '/'
     },
     devServer: {
-      port: 5000,   // specify a port to run on
+      port: 5000,
       static: {
         directory: path.join(__dirname, 'dist'),
         watch: false,
       },
-      open: true,   // open the browser after server had been started
-      hot: true,   // Enable webpack's Hot Module Replacement feature
+      open: true,
+      hot: true,
     },
-    module: {   // add the rule to handel files
+    module: {
       rules: [
         {
-          test: /\.m?js$/,  // monitor the filename end with js
-          exclude: /(node_modules|bower_components)/,   // prevent transform every js file in node_modules
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader'
           }
         },
         {
-          test: /\.css$/i,   // monitor the filename end with css
+          test: /\.css$/i,
           use: [MiniCssExtractPlugin.loader, 'css-loader']
         },
         {
@@ -52,9 +52,9 @@ module.exports = (env, argv) => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, 'src', 'index.html'),   // this is the default
+        template: path.join(__dirname, 'src', 'index.html'),
       }),
-      new MiniCssExtractPlugin(),   // create a mini-css-extract-plugin instance
+      new MiniCssExtractPlugin(),
     ],
   }
 }
