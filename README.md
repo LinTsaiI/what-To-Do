@@ -6,8 +6,6 @@
 
 ## ****Techniques****
 
----
-
 - React
 - Javascript
 - CSS
@@ -16,8 +14,6 @@
 - Firebase Hosting
 
 ## Features
-
----
 
 - Today’s date shows on the top of the input field.
 - Creating to-do items without limiting words or item numbers.
@@ -28,7 +24,6 @@
 
 ![what-To-Do_demo02.gif](README_assets/what-To-Do_demo02.gif)
 
----
 
 ## Resources
 
