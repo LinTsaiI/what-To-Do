@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = (env, argv) => {
   return {
     mode: env.production ? 'production' : 'development',
-    devtool: argv.mode === 'production' ? false : 'inline-source-map',
+    devtool: argv.mode === 'production' ? false : 'eval-source-map',
     entry: path.join(__dirname, 'src', 'index.js'),
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -15,13 +15,14 @@ module.exports = (env, argv) => {
       publicPath: '/'
     },
     devServer: {
-      port: 5000,
+      port: 3000,
       static: {
         directory: path.join(__dirname, 'dist'),
         watch: false,
       },
       open: true,
       hot: true,
+      historyApiFallback: true,
     },
     module: {
       rules: [

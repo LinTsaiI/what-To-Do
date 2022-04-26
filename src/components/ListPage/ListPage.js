@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import CreateItem from '../CreateItem/CreateItem';
 import Item from '../Item/Item';
 import './ListPage.css';
 
-const ListPage = ({ backToHomePage }) => {
-  const [List, setList] = useState([]);
+const ListPage = () => {
+  const [list, setList] = useState([]);
   const [today, setToday] = useState('');
 
   useEffect(() => {
@@ -23,11 +24,11 @@ const ListPage = ({ backToHomePage }) => {
   } 
   
   const handelInputValue = (inputValue) => {
-    setList(currentList => [...currentList, inputValue])
+    setList(currentList => [...currentList, inputValue]);
   }
 
   const updateList = (index) => {
-    const currentList = [...List];
+    const currentList = [...list];
     currentList.splice(index, 1);
     setList(currentList);
   }
@@ -36,8 +37,10 @@ const ListPage = ({ backToHomePage }) => {
     <div className='list-page'>
       <h2>--- {today} ---</h2>
       <CreateItem handelInputValue={handelInputValue}/>
-      <Item content={List} updateList={updateList}/>
-      <button onClick={backToHomePage} className='home-page-btn'>Back to Home Page</button>
+      <Item content={list} updateList={updateList}/>
+      <NavLink to='/'>
+        <button className='home-page-btn'>Back to Home Page</button>
+      </NavLink>
     </div>
   )
 }
