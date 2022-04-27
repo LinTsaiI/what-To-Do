@@ -16,10 +16,16 @@ html, body {
   width: 100vw;
   height: 100vh;
   padding-top: 40px;
-  background: url('https://img.freepik.com/free-photo/flat-lay-desk-arrangement-with-copy-space_23-2148928165.jpg?w=2000') no-repeat center center;
+  background: url('https://img.freepik.com/free-photo/flat-lay-desk-arrangement-with-copy-space_23-2148928165.jpg?w=2000') no-repeat center left;
   background-size: cover;
 }
 
 * {
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 600px) {
+  #root {
+    padding: 40px 20px;
+  }
 }

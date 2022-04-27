@@ -6,10 +6,17 @@
 }
 
 .slogan {
+  display: inline-flex;
   text-align: center;
   font-size: 32px;
   font-weight: bold;
   margin: 20px 0;
+}
+
+.slogan-decoration {
+  margin: 0 10px;
+  white-space: nowrap;
+  align-self: center;
 }
 
 .start-btn {

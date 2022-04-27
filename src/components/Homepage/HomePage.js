@@ -5,7 +5,11 @@ import './HomePage.css';
 const HomePage = () => {
   return (
     <div className='home-page-container'>
-      <div className='slogan'>-- A Simple To-Do list help you arrange your life --</div>
+      <div className='slogan'>
+        <div className='slogan-decoration'>--</div>
+        <div>A Simple To-Do list help you arrange your life</div>
+        <div className='slogan-decoration'>--</div>
+      </div>
       <NavLink to='/list'>
         <button className='start-btn'>Start to use</button>
       </NavLink>

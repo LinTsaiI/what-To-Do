@@ -1,7 +1,7 @@
 import React from 'react';
 import './Item.css';
 
-const Item = ({ content, updateList }) => {
+const Item = ({ content, deleteItem }) => {
   return (
     <div className='item-list'>
       {
@@ -9,7 +9,7 @@ const Item = ({ content, updateList }) => {
           return (
             <div key={index} className='item-container'>
               <div className='item-content'>{item}</div>
-              <button onClick={() => updateList(index)} className='delete-btn'>Delete</button>
+              <button onClick={() => deleteItem(index)} className='delete-btn'>Delete</button>
             </div>
           )
         })

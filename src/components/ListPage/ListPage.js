@@ -1,16 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { getToDo, updateToDo } from '../../API';
 import CreateItem from '../CreateItem/CreateItem';
 import Item from '../Item/Item';
 import './ListPage.css';
 
-const ListPage = () => {
+const ListPage = ({ userId }) => {
   const [list, setList] = useState([]);
   const [today, setToday] = useState('');
+  const firstRender = useRef(true);
 
   useEffect(() => {
-    getDate();  
+    getDate();
+    getToDo(userId, list, setList);
   }, []);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    } else {
+      updateToDo(userId, list);
+    }
+  }, [list]);
 
   const getDate = () => {
     const today = new Date();
@@ -37,7 +49,7 @@ const ListPage = () => {
     <div className='list-page'>
       <h2>--- {today} ---</h2>
       <CreateItem handelInputValue={handelInputValue}/>
-      <Item content={list} updateList={updateList}/>
+      <Item content={list} deleteItem={updateList}/>
       <NavLink to='/'>
         <button className='home-page-btn'>Back to Home Page</button>
       </NavLink>
