@@ -10,11 +10,17 @@ const App = () => {
   const [userAnonymousId, setUserAnonymousId] = useState(null);
 
   useEffect(() => {
-    anonymouslySignIn();
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        setUserAnonymousId(user.uid);
+      } else {
+        anonymouslySignIn();
+      }
+    });
   }, []);
 
-  const anonymouslySignIn = () => {
-    signInAnonymously(auth);
+  const anonymouslySignIn = async () => {
+    await signInAnonymously(auth);
     onAuthStateChanged(auth, user => {
       setUserAnonymousId(user.uid);
     });
