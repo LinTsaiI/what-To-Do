@@ -11,7 +11,8 @@
 - CSS
 - Webpack
 - Babel
-- Firebase Hosting
+- Deployment: Firebase Hosting
+- Database: Cloud Firestore
 
 ## Features
 
@@ -23,7 +24,6 @@
 - Deleting items that are finished or do not need.
 
 ![what-To-Do_demo02.gif](README_assets/what-To-Do_demo02.gif)
-
 
 ## Resources
 
