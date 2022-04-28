@@ -1,8 +1,23 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '../../firebase';
+import { googleSignIn } from '../../API';
+import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage = () => {
+  const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        setUserId(user.uid);
+        navigate('/list');
+      }
+    })
+  }, [userId]);
+
   return (
     <div className='home-page-container'>
       <div className='slogan'>
@@ -10,9 +25,7 @@ const HomePage = () => {
         <div>A Simple To-Do list help you arrange your life</div>
         <div className='slogan-decoration'>--</div>
       </div>
-      <NavLink to='/list'>
-        <button className='start-btn'>Start to use</button>
-      </NavLink>
+      <div className='start-btn' onClick={() => googleSignIn()}>Sign In with Google</div>
     </div>
   )
 }

@@ -1,25 +1,40 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from '../../firebase';
 import { getToDo, updateToDo } from '../../API';
 import CreateItem from '../CreateItem/CreateItem';
 import Item from '../Item/Item';
 import './ListPage.css';
 
-const ListPage = ({ userId }) => {
+const ListPage = () => {
+  const [userId, setUserId] = useState(null);
   const [list, setList] = useState([]);
   const [today, setToday] = useState('');
-  const firstRender = useRef(true);
+  const navigate = useNavigate();
+  // const [ isLoading, setIsLoading] = useState(true);
+  const isLoading = useRef(true);
 
   useEffect(() => {
     getDate();
-    getToDo(userId, list, setList);
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        navigate('/');
+      }
+    });
   }, []);
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    } else {
+    if (userId) {
+      getToDo(userId, list, setList);
+      isLoading.current = false;
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
       updateToDo(userId, list);
     }
   }, [list]);
@@ -45,14 +60,18 @@ const ListPage = ({ userId }) => {
     setList(currentList);
   }
 
+  const signOutFromGoogle = () => {
+    signOut(auth).then(() => {
+      navigate('/');
+    }).catch(error => console.log(error))
+  }
+
   return (
     <div className='list-page'>
       <h2>--- {today} ---</h2>
       <CreateItem handelInputValue={handelInputValue}/>
-      <Item content={list} deleteItem={updateList}/>
-      <NavLink to='/'>
-        <button className='home-page-btn'>Back to Home Page</button>
-      </NavLink>
+      <Item content={list} deleteItem={updateList} dataState={isLoading}/>
+      <button className='sign-out-btn' onClick={() => signOutFromGoogle()}>Sign Out</button>
     </div>
   )
 }

@@ -33,3 +33,8 @@
   cursor: pointer;
   padding: 5px 10px;
 }
+
+.loading {
+  font-size: 28px;
+  text-align: center;
+}
