@@ -5,7 +5,7 @@ const Item = ({ content, deleteItem, dataState }) => {
   return (
     <div className='item-list'>
       {
-        dataState.current ? <div className='loading'>Loading...</div> :
+        dataState ? <div className='loading'>Loading...</div> :
       
         content.map((item, index) => {
           return (

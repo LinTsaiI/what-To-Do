@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from '../../firebase';
+import React, { useEffect } from 'react';
 import { googleSignIn } from '../../API';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
-const HomePage = () => {
-  const [userId, setUserId] = useState(null);
+const HomePage = ({ userId, setUserId }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        setUserId(user.uid);
-        navigate('/list');
-      }
-    })
-  }, [userId]);
+    if (userId) {
+      navigate('/list');
+    }
+  });
 
   return (
     <div className='home-page-container'>
@@ -25,7 +19,7 @@ const HomePage = () => {
         <div>A Simple To-Do list help you arrange your life</div>
         <div className='slogan-decoration'>--</div>
       </div>
-      <div className='start-btn' onClick={() => googleSignIn()}>Sign In with Google</div>
+      <div className='start-btn' onClick={() => googleSignIn(setUserId)}>Sign In with Google</div>
     </div>
   )
 }
